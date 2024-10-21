@@ -21,8 +21,8 @@ jobs:
       - name: Get current version
         id: get_version
         run: |
-          # Look for the most recent tag
-          TAG=$(git describe --tags --abbrev=0)
+          # Look for the most recent tag, fallback to v1.0.0 if none exist
+          TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0")
           echo "Current version is $TAG"
           # Extract the version number
           VERSION=${TAG#v}
@@ -31,6 +31,7 @@ jobs:
       - name: Bump version
         id: bump_version
         run: |
+          # Increment the patch version
           VERSION=$(echo "${{ steps.get_version.outputs.version }}" | awk -F. -v OFS=. '{$NF++; print}')
           echo "New version is v$VERSION"
           echo "::set-output name=version::v$VERSION"
