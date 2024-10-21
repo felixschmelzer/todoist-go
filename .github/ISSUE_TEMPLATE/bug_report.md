@@ -7,32 +7,23 @@ assignees: ''
 
 ---
 
-**Describe the bug**
-A clear and concise description of what the bug is.
+## **Describe the bug**
+A clear and concise description of the bug in the Todoist Go API wrapper.
 
-**To Reproduce**
+## **To Reproduce**
 Steps to reproduce the behavior:
-1. Go to '...'
-2. Click on '....'
-3. Scroll down to '....'
-4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+1. Call the method `todoist.<MethodName>` with the following parameters: `...`
+2. See the error response or unexpected behavior in the output.
 
-**Screenshots**
-If applicable, add screenshots to help explain your problem.
+## **Expected behavior**
+A clear and concise description of what you expected to happen (e.g., the correct data returned, no errors).
 
-**Desktop (please complete the following information):**
- - OS: [e.g. iOS]
- - Browser [e.g. chrome, safari]
- - Version [e.g. 22]
+## **Environment (please complete the following information):**
+- Go version: [e.g. 1.23.2]
+- OS: [e.g. macOS, Windows, Linux]
+- Todoist Go package version: [e.g. v0.1.0]
+- Other dependencies: [e.g. any libraries used with this project]
 
-**Smartphone (please complete the following information):**
- - Device: [e.g. iPhone6]
- - OS: [e.g. iOS8.1]
- - Browser [e.g. stock browser, safari]
- - Version [e.g. 22]
-
-**Additional context**
-Add any other context about the problem here.
+## **Additional context**
+Add any other context about the problem here, such as specific API endpoints used, rate limits, or configurations that could affect the behavior.
