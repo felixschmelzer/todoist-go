@@ -18,6 +18,10 @@ jobs:
           git config --global user.name "GitHub Action"
           git config --global user.email "action@github.com"
 
+      - name: Set up GitHub token authentication
+        run: |
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+
       - name: Get current version
         id: get_version
         run: |
