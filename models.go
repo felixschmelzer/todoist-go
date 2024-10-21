@@ -1,4 +1,4 @@
-package todoist_go
+package todoist
 
 // ViewStyle is a custom type to restrict the view style to either "list" or "board".
 type ViewStyle string

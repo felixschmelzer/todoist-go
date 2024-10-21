@@ -1,4 +1,4 @@
-package todoist_go
+package todoist
 
 import (
 	"bytes"
