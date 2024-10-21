@@ -1,6 +1,7 @@
 package todoist
 
 import (
+	"errors"
 	"fmt"
 	"net/http"
 )
@@ -70,6 +71,31 @@ func (c *TodoistClient) GetProject(id string) (*Project, error) {
 	}
 
 	return &project, nil
+}
+
+// GetProjects fetches all projects from the Todoist API.
+func (c *TodoistClient) GetProjects() ([]Project, error) {
+	// Build the request URL
+	url := fmt.Sprintf("%s/projects", c.BaseURL)
+
+	// Use the sendRequest utility function to perform the GET request
+	resp, err := sendRequest(c.HTTPClient, "GET", url, c.Token, nil)
+	if err != nil {
+		return nil, err
+	}
+
+	// Check if the response status code is OK
+	if resp.StatusCode != http.StatusOK {
+		return nil, errors.New("failed to fetch projects, status code: " + resp.Status)
+	}
+
+	// Parse the response into a slice of Project structs
+	var projects []Project
+	if err := parseResponse(resp, &projects); err != nil {
+		return nil, err
+	}
+
+	return projects, nil
 }
 
 // DeleteProject deletes a specific project by its ID from Todoist.
