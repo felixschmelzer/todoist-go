@@ -94,15 +94,15 @@ func main() {
 ```
 
 
-### License
+## License
 
 This project is licensed under the MIT License. See the LICENSE file for more details.
 
-### Contributing
+## Contributing
 
 Contributions, issues, and feature requests are welcome! Feel free to open an issue or submit a pull request.
 
-### Acknowledgments
+## Acknowledgments
 
 This package is inspired by the official Todoist REST API and aims to make interacting with Todoist easier for Go developers.
 
