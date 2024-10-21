@@ -1,0 +1,53 @@
+name: Tag and Release on Push
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  tag_and_release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Git
+        run: |
+          git config --global user.name "GitHub Action"
+          git config --global user.email "action@github.com"
+
+      - name: Get current version
+        id: get_version
+        run: |
+          # Look for the most recent tag
+          TAG=$(git describe --tags --abbrev=0)
+          echo "Current version is $TAG"
+          # Extract the version number
+          VERSION=${TAG#v}
+          echo "::set-output name=version::$VERSION"
+
+      - name: Bump version
+        id: bump_version
+        run: |
+          VERSION=$(echo "${{ steps.get_version.outputs.version }}" | awk -F. -v OFS=. '{$NF++; print}')
+          echo "New version is v$VERSION"
+          echo "::set-output name=version::v$VERSION"
+
+      - name: Create new tag
+        run: |
+          git tag ${{ steps.bump_version.outputs.version }}
+          git push origin ${{ steps.bump_version.outputs.version }}
+
+      - name: Create release
+        uses: actions/create-release@v1
+        with:
+          tag_name: ${{ steps.bump_version.outputs.version }}
+          release_name: Release ${{ steps.bump_version.outputs.version }}
+          body: |
+            Automated release for version ${{ steps.bump_version.outputs.version }}
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
