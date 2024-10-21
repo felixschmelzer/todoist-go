@@ -33,7 +33,7 @@ import "github.com/felixschmelzer/todoist-go"
 Before you can use this Go API wrapper, you'll need to obtain your Todoist API token. The token allows you to authenticate your requests and interact with the Todoist API.
 How to get your API Token is described [here](https://todoist.com/de/help/articles/find-your-api-token).
 
-Once you have the token, you can use it to initialize the TodoistClient in your Go code:
+Once you have the token, you can use it to initialize the TodoistClient in your Go code and access Todoist Resources:
 
 ```go
 package main
